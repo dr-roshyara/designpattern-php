@@ -1,17 +1,26 @@
 <?php
 /*************************************************************************/
+//Invoke method is a magic method in php. It is defined as the constructor and you can invod
+class InvokeExample {
+  public function __invoke () {
+    echo "Hello World!\n";
+  }
+}
+$invx = new InvokeExample;
+echo $invx ();
+//
+
+
 //Reflection method
-class Example {
-  static function printer () { echo "Hello World!\n"; }
+class ReflexionExample {
+  static function printHello () { echo "<br> Hello World, Here is ReflexionExample!\n"; }
 }
  
-$class = new ReflectionClass ('Example');
-$method = $class->getMethod ('printer');
+$class = new ReflectionClass ('ReflexionExample');
+$method = $class->getMethod ('printHello');
 $closure = $method->getClosure ();
 echo $closure ();
 
-$closure = function ($a, &$b, $c = null) { };
-$m = new ReflectionMethod ($closure, '__invoke');
 //Reflection::export ($m);
 // $m = new ReflectionMethod ($closure(2,3,3));
 // $p = new ReflectionParameter ($closure, 0);
